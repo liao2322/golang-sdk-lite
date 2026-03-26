@@ -1,0 +1,17 @@
+services:
+  halal-webui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: halalcloud/golang-sdk-lite-webui:latest
+    container_name: halalcloud-webui
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    environment:
+      HALAL_CLIENT_ID: "your_client_id"
+      HALAL_CLIENT_SECRET: "your_client_secret"
+      HALAL_API_HOST: "openapi.2dland.cn"
+      HALAL_WEB_ADDR: ":8080"
+      HALAL_WEB_LINK_MODE: "redirect"
+      HALAL_DEFAULT_ROOT: "/"

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="theme-color" content="#c96b2c" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Halal Cloud" />
+  <title>Halal Cloud - Next Gen</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Phosphor Icons for modern iconography -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="/assets/styles.css" />
+</head>
+
+<body>
+  <!-- Ambient Background -->
+  <div class="ambient-bg">
+    <div class="blob-1"></div>
+    <div class="blob-2"></div>
+    <div class="blob-3"></div>
+  </div>
+
+  <div id="app">
+    <!-- Auth View -->
+    <section id="auth-view" class="view auth-view">
+      <div class="glass-card auth-card">
+        <div class="auth-header">
+          <i class="ph-fill ph-cloud-arrow-up brand-icon"></i>
+          <h1>Halal Cloud</h1>
+          <p class="subtitle">Next Generation Web UI</p>
+        </div>
+
+        <p class="auth-desc">Welcome back. Please authenticate via device code to access your files, manage offline
+          tasks, and stream media.</p>
+
+        <div class="auth-action-area">
+          <button id="start-login" class="btn btn-primary btn-glow">
+            <i class="ph ph-device-mobile"></i> Start Device Login
+          </button>
+        </div>
+
+        <div id="device-panel" class="device-panel hidden">
+          <div class="device-info">
+            <div class="info-group">
+              <span class="label">User Code</span>
+              <strong id="user-code" class="highlight-code">----</strong>
+            </div>
+            <div class="info-group">
+              <span class="label">Verification Link</span>
+              <a id="verification-link" target="_blank" rel="noreferrer" class="link-glow">Open Verification</a>
+            </div>
+          </div>
+          <div class="status-indicator">
+            <div class="spinner"></div>
+            <p id="device-status">Waiting for authorization...</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main View -->
+    <section id="main-view" class="view main-view hidden">
+      <!-- Sidebar -->
+      <aside class="sidebar glass-panel">
+        <div class="sidebar-header">
+          <i class="ph-fill ph-cloud-arrow-up brand-icon-small"></i>
+          <h2>Halal Cloud</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+          <button class="nav-item active" data-view="files">
+            <i class="ph ph-folder-open"></i> Files
+          </button>
+          <button class="nav-item" data-view="recent">
+            <i class="ph ph-clock-counter-clockwise"></i> Recent
+          </button>
+          <button class="nav-item" data-view="offline">
+            <i class="ph ph-cloud-check"></i> Offline Tasks
+          </button>
+          <button class="nav-item" data-view="trash">
+            <i class="ph ph-trash"></i> Trash
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <button class="nav-item" data-view="account">
+            <i class="ph ph-user-circle"></i> Account
+          </button>
+          <button id="logout-btn" class="nav-item text-danger">
+            <i class="ph ph-sign-out"></i> Logout
+          </button>
+        </div>
+      </aside>
+
+      <!-- Main Content Area -->
+      <main class="content-area">
+        <!-- Top Toolbar -->
+        <header class="topbar glass-panel">
+          <div class="breadcrumb-area">
+            <h3 id="view-title">Files</h3>
+            <div id="breadcrumbs" class="breadcrumbs">/</div>
+          </div>
+
+          <div class="topbar-actions">
+            <!-- Mode Switch -->
+            <div class="mode-switch-wrapper">
+              <i class="ph ph-plugs mode-icon"></i>
+              <select id="link-mode-select" class="glass-select">
+                <option value="redirect">302 Redirect</option>
+                <option value="proxy">Proxy Mode</option>
+              </select>
+            </div>
+
+            <button id="refresh-btn" class="btn btn-icon" title="Refresh">
+              <i class="ph ph-arrows-clockwise"></i>
+            </button>
+            <button id="new-folder-btn" class="btn btn-primary">
+              <i class="ph ph-folder-plus"></i> New Folder
+            </button>
+          </div>
+        </header>
+
+        <!-- Message Toast -->
+        <div id="toast-container" class="toast-container"></div>
+        <div id="message" class="message hidden"></div>
+
+        <!-- Render View -->
+        <div class="scroll-container">
+          <section id="content-view" class="content-view-inner"></section>
+        </div>
+      </main>
+    </section>
+  </div>
+
+  <!-- Player Modal -->
+  <dialog id="player-modal" class="glass-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="player-title">Preview</h3>
+        <button id="close-player" class="btn btn-icon btn-close">
+          <i class="ph ph-x"></i>
+        </button>
+      </div>
+      <div id="player-body" class="modal-body"></div>
+    </div>
+  </dialog>
+
+  <script src="/assets/app.js" defer></script>
+</body>
+
+</html>

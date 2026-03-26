@@ -1,0 +1,18 @@
+{
+  "name": "Halal Cloud Web UI",
+  "short_name": "Halal Cloud",
+  "description": "Halal Cloud lightweight web app with playback, file browsing, and offline tasks.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4efe5",
+  "theme_color": "#c96b2c",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
